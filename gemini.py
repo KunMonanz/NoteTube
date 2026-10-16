@@ -20,10 +20,14 @@ def get_gemini_response() -> GeminiResponse | GeminiResponseError:
             model="gemini-2.5-flash",
             contents="Explain quantum computing in one simple sentence.",
         )
+
         response_text = response.text
+
         if not response_text:
+            logger.exception("Error in gemini response: response returns None")
             return GeminiResponseError(message="Error in gemini response")
         return GeminiResponse(response=response_text)
+
     except Exception as e:
         logger.exception("Error in gemini response: %s", str(e))
         return GeminiResponseError(message="Error in gemini response")
