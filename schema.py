@@ -28,30 +28,31 @@ class TranscribeRequest(BaseModel):
         )
 
         match = re.search(youtube_regex, url_str)
-
         if not match:
             raise ValueError("Not a valid YouTube video URL")
 
         video_id = match.group(1)
-
-        return f"https://youtube.com{video_id}"
+        return f"https://www.youtube.com/watch?v={video_id}"
 
     @computed_field
     @property
     def video_id(self) -> str:
         """Extracts and exposes the exact video ID automatically."""
-        query_string = self.url.query
-        if query_string and "v=" in query_string:
-            return query_string.split("v=")[1][:11]
+        if self.url.query:
+            query_params = self.url.query.split("&")
+            for param in query_params:
+                if param.startswith("v="):
+                    return param.split("v=")[1]
         return ""
 
 
 class TranscribeResponseSuccess(BaseModel):
     status: str = "success"
     video_id: str
-    full_text: str
+    transcript: str
 
 
 class TranscribeResponseFail(BaseModel):
     status: str = "failed"
     message: str
+    video_id: str

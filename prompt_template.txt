@@ -1,0 +1,9 @@
+Structure your response exactly using these headers:
+# [Topic Summary]
+## Executive Summary
+## Key Takeaways
+## Process Breakdown
+## Tools & References
+
+Transcript to analyze:
+{transcript_text}
