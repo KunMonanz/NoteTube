@@ -22,17 +22,19 @@ By eliminating complex task queues and message brokers, this project achieves a 
 ## 📁 Project Structure
 
 ```text
+├── main.py                 # FastAPI app entrypoint (current)
+├── gemini.py               # Gemini API script (current; to be wrapped as a reusable client)
+├── requirements.txt        # Package dependencies
+│
+│   # Planned, not yet implemented:
 ├── api/
 │   └── v1/
 │       └── router.py       # Async API path definitions
-├── gemini.py               # Exponential backoff Gemini API wrapper
 ├── utils.py                # Thread pool executor for script fetching
 ├── schema.py               # Pydantic input/output payload models
-├── ratelimiting.py              # In-memory IP tracking token bucket
+├── ratelimiting.py         # In-memory IP tracking token bucket
 ├── system_prompt.txt       # Low-cost system rules
-├── prompt_template.txt     # Note layout markdown blueprint
-├── main.py                 # FastAPI initialization entrypoint
-└── requirements.txt        # Package dependencies
+└── prompt_template.txt     # Note layout markdown blueprint
 ```
 
 ## 🚀 Local Installation & Setup
@@ -40,7 +42,7 @@ By eliminating complex task queues and message brokers, this project achieves a 
 ### 1. Clone and Configure Environments
 
 ```bash
-git clone https://github.com
+git clone https://github.com/KunMonanz/NoteTube.git
 cd NoteTube
 
 python -m venv venv
