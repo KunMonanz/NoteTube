@@ -1,0 +1,46 @@
+2026-10-16 16:22:31,196 [INFO] utils (utils.py:21) - Attempting to transcribe YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:22:34,832 [INFO] utils (utils.py:27) - Successfully transcribed YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:22:34,832 [INFO] gemini (gemini.py:22) - Requesting Gemini response (transcript: 14972 chars)
+2026-10-16 16:22:36,531 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:22:39,511 [WARNING] gemini (gemini.py:71) - Gemini API busy (status 503). Retrying in 2s (attempt 1/3)
+2026-10-16 16:22:41,523 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:22:42,582 [WARNING] gemini (gemini.py:71) - Gemini API busy (status 503). Retrying in 4s (attempt 2/3)
+2026-10-16 16:22:46,599 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:22:50,115 [ERROR] gemini (gemini.py:81) - Gemini API failed permanently (status 503): This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+2026-10-16 16:25:05,480 [INFO] utils (utils.py:21) - Attempting to transcribe YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:25:11,231 [INFO] utils (utils.py:27) - Successfully transcribed YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:25:11,232 [INFO] gemini (gemini.py:22) - Requesting Gemini response (transcript: 14972 chars)
+2026-10-16 16:25:12,877 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:25:14,012 [ERROR] gemini (gemini.py:81) - Gemini API failed permanently (status 404): models/gemini-3.8-flash-lite is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-10-16 16:26:13,947 [INFO] utils (utils.py:21) - Attempting to transcribe YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:26:30,668 [INFO] utils (utils.py:27) - Successfully transcribed YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:26:30,668 [INFO] gemini (gemini.py:22) - Requesting Gemini response (transcript: 14972 chars)
+2026-10-16 16:26:32,334 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:26:34,522 [WARNING] gemini (gemini.py:71) - Gemini API busy (status 503). Retrying in 2s (attempt 1/3)
+2026-10-16 16:26:36,535 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:26:37,696 [WARNING] gemini (gemini.py:71) - Gemini API busy (status 503). Retrying in 4s (attempt 2/3)
+2026-10-16 16:26:41,709 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:26:42,507 [ERROR] gemini (gemini.py:81) - Gemini API failed permanently (status 503): This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+2026-10-16 16:29:00,041 [INFO] utils (utils.py:21) - Attempting to transcribe YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:29:06,388 [INFO] utils (utils.py:27) - Successfully transcribed YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:29:06,389 [INFO] gemini (gemini.py:22) - Requesting Gemini response (transcript: 14972 chars)
+2026-10-16 16:29:07,816 [INFO] google_genai.models (models.py:8514) - AFC is enabled with max remote calls: 10.
+2026-10-16 16:29:09,265 [ERROR] gemini (gemini.py:81) - Gemini API failed permanently (status 404): This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.8-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+2026-10-16 16:31:18,514 [INFO] utils (utils.py:21) - Attempting to transcribe YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:31:26,368 [INFO] utils (utils.py:27) - Successfully transcribed YouTube video of video_id: RHCyTWaRZSk
+2026-10-16 16:31:26,368 [INFO] gemini (gemini.py:21) - Requesting Gemini response (transcript: 14972 chars)
+2026-10-16 16:31:29,588 [ERROR] gemini (gemini.py:90) - Unexpected error while calling Gemini: create() got unexpected keyword argument(s): config. Use extra_body=... to send additional request body fields.
+Traceback (most recent call last):
+  File "C:\Users\HP 840 G5\Documents\CODE\NoteTube\gemini.py", line 48, in get_gemini_response
+    interaction = await client.aio.interactions.create(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\HP 840 G5\Documents\CODE\NoteTube\venv\Lib\site-packages\google\genai\_gaos\google_genai.py", line 442, in create
+    body = _normalize_create_body(body)
+  File "C:\Users\HP 840 G5\Documents\CODE\NoteTube\venv\Lib\site-packages\google\genai\_gaos\google_genai.py", line 1476, in _normalize_create_body
+    raise TypeError(
+    ...<3 lines>...
+    )
+TypeError: create() got unexpected keyword argument(s): config. Use extra_body=... to send additional request body fields.

@@ -14,6 +14,10 @@ async def transcribe_and_export_markdown(payload: TranscribeRequest, request: Re
     await check_ip_rate_limit(request)
 
     video_id = payload.video_id
+    if not video_id:
+        raise HTTPException(
+            detail="Invalid url", status_code=status.HTTP_400_BAD_REQUEST
+        )
 
     youtube_transcript = await fetch_youtube_transcript(video_id)
 

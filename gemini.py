@@ -19,13 +19,19 @@ BASE_DIR = Path(__file__).resolve().parent
 async def get_gemini_response(
     transcript_text: str,
 ) -> GeminiResponse | GeminiResponseError:
+    logger.info(
+        "Requesting Gemini response (transcript: %d chars)", len(transcript_text)
+    )
     try:
         gemini_api_key = os.getenv("GEMINI_API_KEY")
         client = genai.Client(api_key=gemini_api_key)
+        logger.debug("Gemini client initialized")
 
+        logger.debug("Reading prompt template file")
         template_path = BASE_DIR / "prompt_template.txt"
         with open(template_path, "r", encoding="utf-8") as file:
             user_prompt_template = file.read()
+        logger.debug("Prompt template loaded")
 
         system_instruction_path = BASE_DIR / "system_prompt.txt"
         with open(system_instruction_path, "r", encoding="utf-8") as file:
@@ -52,7 +58,7 @@ async def get_gemini_response(
 
                 response_text = response.text
                 if not response_text:
-                    logger.exception("Error in gemini response: response returns None")
+                    logger.error("Gemini returned an empty response")
                     return GeminiResponseError(
                         message="Error in gemini response: Empty payload"
                     )
@@ -63,18 +69,24 @@ async def get_gemini_response(
                 if api_err.code in [503, 429] and attempt < max_retries - 1:
                     sleep_time = base_delay * (2**attempt)
                     logger.warning(
-                        f"Gemini API busy ({api_err.code}). Retrying in {sleep_time}s... (Attempt {attempt + 1}/{max_retries})"
+                        "Gemini API busy (status %s). Retrying in %ss (attempt %d/%d)",
+                        api_err.code,
+                        sleep_time,
+                        attempt + 1,
+                        max_retries,
                     )
                     await asyncio.sleep(sleep_time)
                     continue
 
                 logger.error(
-                    f"Gemini API failed permanently with status {api_err.code}: {api_err.message}"
+                    "Gemini API failed permanently (status %s): %s",
+                    api_err.code,
+                    api_err.message,
                 )
                 return GeminiResponseError(
                     message=f"Gemini API error: {api_err.message}"
                 )
 
     except Exception as e:
-        logger.exception("Error in gemini response: %s", str(e))
+        logger.exception("Unexpected error while calling Gemini: %s", e)
         return GeminiResponseError(message=f"Gemini API error: {str(e)}")
