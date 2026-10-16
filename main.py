@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from router import router as transcribe_router
+from v1.router import router as transcribe_router
 
 app = FastAPI(title="NoteTube")
 
